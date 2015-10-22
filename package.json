@@ -1,12 +1,12 @@
 {
-  "name": "library-boilerplate",
+  "name": "caravel",
   "version": "1.0.0",
-  "description": "library-boilerplate-description",
+  "description": "Simple React bindings for Leaflet",
   "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf lib dist",
-    "build": "babel src --out-dir lib",
-    "build:umd": "webpack src/index.js dist/library-boilerplate.js && NODE_ENV=production webpack src/index.js dist/library-boilerplate.min.js",
+    "build": "NODE_ENV=production babel src --out-dir lib",
+    "build:umd": "webpack src/index.js dist/caravel.js && NODE_ENV=production webpack src/index.js dist/caravel.min.js",
     "lint": "eslint src test examples",
     "test": "NODE_ENV=test mocha",
     "test:watch": "NODE_ENV=test mocha --watch",
@@ -15,31 +15,40 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/library-boilerplate-author/library-boilerplate.git"
+    "url": "https://github.com/volkanunsal/caravel.git"
   },
   "keywords": [
-    "library-boilerplate-keywords"
+    "leaflet",
+    "react"
   ],
-  "author": "library-boilerplate-author",
+  "author": "Volkan Unsal",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/library-boilerplate-author/library-boilerplate/issues"
+    "url": "https://github.com/volkanunsal/caravel/issues"
   },
-  "homepage": "https://github.com/library-boilerplate-author/library-boilerplate",
+  "homepage": "https://github.com/volkanunsal/caravel",
   "devDependencies": {
     "babel": "^5.5.8",
     "babel-core": "^5.6.18",
     "babel-eslint": "^3.1.15",
     "babel-loader": "^5.1.4",
+    "babel-plugin-tcomb": "gcanti/babel-plugin-tcomb",
+    "deep-equal": "1.0.0",
+    "es6-promise":"3.0.2",
     "eslint": "^0.23",
     "eslint-config-airbnb": "0.0.6",
     "eslint-plugin-react": "^2.3.0",
     "expect": "^1.6.0",
     "isparta": "^3.0.3",
     "mocha": "^2.2.5",
+    "react": "^0.14.0",
     "rimraf": "^2.3.4",
+    "tcomb": "2.5.1",
+    "tcomb-react": "0.8.8",
+    "tcomb-validation": "2.1.0",
     "webpack": "^1.9.6",
-    "webpack-dev-server": "^1.8.2"
+    "webpack-dev-server": "^1.8.2",
+    "whatwg-fetch":"~0.9.0"
   },
   "dependencies": {
     "invariant": "^2.0.0"

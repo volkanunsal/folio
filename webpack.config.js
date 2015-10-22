@@ -24,12 +24,12 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: ['babel-loader'],
+      loaders: ['babel?plugins=babel-plugin-tcomb'],
       exclude: /node_modules/
     }]
   },
   output: {
-    library: 'library-boilerplate',
+    library: 'caravel',
     libraryTarget: 'umd'
   },
   plugins: plugins,

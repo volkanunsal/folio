@@ -19,7 +19,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      'library-boilerplate': path.join(__dirname, '..', '..', 'src')
+      'caravel': path.join(__dirname, '..', '..', 'src')
     },
     extensions: ['', '.js']
   },
@@ -31,7 +31,7 @@ module.exports = {
       include: __dirname
     }, {
       test: /\.js$/,
-      loaders: ['babel'],
+      loaders: ['babel?plugins=babel-plugin-tcomb'],
       include: path.join(__dirname, '..', '..', 'src')
     }]
   }
