@@ -1,44 +1,37 @@
 import t from 'tcomb';
 
-const ILeafletLayerAndControl = t.struct({
-  initialize: t.maybe(t.Function),
-  onAdd: t.maybe(t.Function),
-  onRemove: t.maybe(t.Function)
-}, 'ILeafletLayerAndControl');
-
-const IAdapter = t.struct({
-  add: t.Function,
+export const IAdapter = t.struct({
   create: t.Function,
+  add: t.maybe(t.Function),
   update: t.maybe(t.Function),
-  remove: t.maybe(t.Function)
+  remove: t.Function,
+  IOptions: t.maybe(t.Object)
 }, 'IAdapter');
 
-const IConfig = t.struct({
+export const IConfig = t.struct({
+  name: t.String,
   enabled: t.maybe(t.Boolean),
-  belongsTo: t.maybe(t.String)
+  belongsTo: t.maybe(t.struct({
+    name: t.String,
+    isOwner: t.Boolean
+  }))
 }, 'IConfig');
 
-const IDeck = t.struct({
-  name: t.String,
+export const IDeck = t.struct({
   adapter: IAdapter,
   options: t.maybe(t.Object),
   config: t.maybe(t.Object),
   on: t.maybe(t.dict(t.String, t.Function))
 }, 'IDeck');
 
-const IMap = IDeck.extend({
-  decks: t.maybe(t.list(IDeck))
-}, 'IMap');
+export const ICaravel = t.struct({
+  map: IDeck,
+  decks: t.list(IDeck)
+}, 'ICaravel');
 
-const IMapContainer = t.struct({
-  model: IMap,
-  style: t.maybe(t.Object)
-})
-
-const IDeckContainer = t.struct({
+export const IDeck = t.struct({
   map: t.Object,
   options: t.Object,
   config: IConfig,
   key: t.Any
-})
-
+}, 'IDeck');

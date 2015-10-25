@@ -1,44 +1,62 @@
+/*globals L*/
 import React, { Component } from 'react';
-import { MapContainer } from 'caravel';
-import { LeafletImageTile, LeafletMarker, LeafletControl, LeafletMap } from 'caravel/adapters';
-
-class Magellan extends Component {
-  render() {
-    return <div>I navigate you around this map.</div>
-  }
-}
+import Caravel from 'caravel';
+import {
+  LMap,
+  LImageTile,
+  LMarker,
+  LControl,
+  LCircle,
+  LPopup
+} from 'caravel/adapters';
 
 export default class App extends Component {
   state = {
-    name: 'myMap',
-    adapter: LeafletMap,
-    options: {
-      zoom: 13,
-      center: [51.5, -0.09]
+    map: {
+      adapter: LMap,
+      config: {
+        name: 'myMap',
+        style: {width: '100%', height: 800},
+        className: 'myMap'
+      },
+      options: {
+        zoom: 13,
+        center: [51.5, -0.09]
+      }
     },
     decks: [
       {
-        name: 'Basemap',
-        adapter: LeafletImageTile, // Adapter adds and removes the Leaflet objects
+        /*
+          Adapter manages all interaction with the Leaflet.
+        */
+        adapter: LImageTile,
+
+        /*
+          Any configuraiton option that is not specifically required by a Leaflet plugin
+          should be included in the config object. The only required config option
+          is `name`.
+        */
         config: {
-          // Anything that is not specifically needed by the Leaflet options
-          // but you want to be able to configure via method calls should go here.
+          name: 'Basemap',
           url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
         },
         options: {
-          // The options are passed directly to Leaflet
+          // The options are passed directly into Leaflet
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }
       },
       {
-        name: 'Marker 1', // Names must be unique
-        adapter: LeafletMarker,
+        adapter: LMarker,
         config: {
+          name: 'Marker 1', // Names must be unique
           coordinates: [51.5, -0.09]
         },
-        // Event bindings attached to the Leaflet layer
+
+        /*
+          Event bindings attached to the Leaflet layer.
+        */
         on: {
-          // Map object is always the second argument of a callback
+          // Map object is always the second argument of a callback.
           click: (e, map) => {
             L.popup()
               .setLatLng(e.target.getLatLng())
@@ -49,25 +67,55 @@ export default class App extends Component {
         }
       },
       {
-        name: 'Control 1',
-        adapter: LeafletControl,
+        adapter: LPopup,
         config: {
+          name: 'Popup 2',
+          belongsTo: {
+            /*
+              Must belong to an existing deck.
+            */
+            name: 'Marker 1',
+            /*
+              When this property is set to true, the associated object is passed
+              to the adapter methods as the `owner`. By default, `owner` is the map
+              object.
+            */
+            isOwner: true
+          }
+        }
+      },
+      {
+        adapter: LControl,
+        config: {
+          name: 'Control 1',
           // Content can be a string or a function that returns the content,
           // e.g. React component.
-          content: () => <Magellan />
+          content: () => <div>I am in a control box!</div>
         },
         options: {
           position: 'topright',
           className: 'my-control'
+        }
+      },
+      {
+        adapter: LCircle,
+        config: {
+          name: 'Circle 1',
+          coordinates: [51.5, -0.09],
+          radius: 1000 // meters
+        },
+        options: {
+          color: 'red',
+          stroke: false
         }
       }
     ]
   }
 
   render() {
-    return <MapContainer
-      style={{width: '100%', height: 800}}
-      model={this.state}
-    />
+    return <Caravel
+      map={this.state.map}
+      decks={this.state.decks}
+    />;
   }
 }

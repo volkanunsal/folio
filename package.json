@@ -1,15 +1,15 @@
 {
   "name": "caravel",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Simple React bindings for Leaflet",
   "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf lib dist",
     "build": "NODE_ENV=production babel src --out-dir lib",
     "build:umd": "webpack src/index.js dist/caravel.js && NODE_ENV=production webpack src/index.js dist/caravel.min.js",
-    "lint": "eslint src test examples",
+    "lint": "NODE_ENV=development eslint src test examples",
     "test": "NODE_ENV=test mocha",
-    "test:watch": "NODE_ENV=test mocha --watch",
+    "test:watch": "NODE_ENV=development mocha --watch",
     "test:cov": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
     "prepublish": "npm run lint && npm run test && npm run clean && npm run build && npm run build:umd"
   },
@@ -27,30 +27,34 @@
     "url": "https://github.com/volkanunsal/caravel/issues"
   },
   "homepage": "https://github.com/volkanunsal/caravel",
+  "dependencies": {
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "tcomb": "2.5.1",
+    "tcomb-react": "0.8.9",
+    "tcomb-validation": "2.1.0"
+  },
   "devDependencies": {
     "babel": "^5.5.8",
     "babel-core": "^5.6.18",
     "babel-eslint": "^3.1.15",
     "babel-loader": "^5.1.4",
     "babel-plugin-tcomb": "gcanti/babel-plugin-tcomb",
+    "babel-plugin-rewire": "0.1.23-beta-3",
+    "chai": "*",
     "deep-equal": "1.0.0",
-    "es6-promise":"3.0.2",
     "eslint": "^0.23",
     "eslint-config-airbnb": "0.0.6",
     "eslint-plugin-react": "^2.3.0",
-    "expect": "^1.6.0",
     "isparta": "^3.0.3",
+    "jsdom": "^7.0.2",
+    "leaflet": "0.7.3",
     "mocha": "^2.2.5",
-    "react": "^0.14.0",
+    "react-addons-test-utils": "^0.14.0",
     "rimraf": "^2.3.4",
-    "tcomb": "2.5.1",
-    "tcomb-react": "0.8.8",
-    "tcomb-validation": "2.1.0",
+    "sinon": "1.17.0",
+    "sinon-chai": "2.8.0",
     "webpack": "^1.9.6",
-    "webpack-dev-server": "^1.8.2",
-    "whatwg-fetch":"~0.9.0"
-  },
-  "dependencies": {
-    "invariant": "^2.0.0"
+    "webpack-dev-server": "^1.8.2"
   }
 }

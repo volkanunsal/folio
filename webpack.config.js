@@ -24,7 +24,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: ['babel?plugins=babel-plugin-tcomb'],
+      loaders: ['babel?plugins=tcomb&plugins=rewire'],
       exclude: /node_modules/
     }]
   },

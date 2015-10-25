@@ -4,7 +4,8 @@
   "env": {
     "development": {
       "plugins": [
-        "tcomb"
+        "tcomb",
+        "rewire"
       ]
     }
   }
