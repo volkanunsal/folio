@@ -1,5 +1,7 @@
 import t from 'tcomb';
 
+export const IEventBindings = t.maybe(t.dict(t.String, t.Function));
+
 export const IAdapter = t.struct({
   create: t.Function,
   add: t.maybe(t.Function),
@@ -19,19 +21,20 @@ export const IConfig = t.struct({
 
 export const IDeck = t.struct({
   adapter: IAdapter,
-  options: t.maybe(t.Object),
-  config: t.maybe(t.Object),
-  on: t.maybe(t.dict(t.String, t.Function))
-}, 'IDeck');
-
-export const ICaravel = t.struct({
-  map: IDeck,
-  decks: t.list(IDeck)
-}, 'ICaravel');
-
-export const IDeck = t.struct({
-  map: t.Object,
-  options: t.Object,
   config: IConfig,
-  key: t.Any
+  options: t.maybe(t.Object),
+  on: IEventBindings
 }, 'IDeck');
+
+export const ICaravelContainer = t.struct({
+  schema: IDeck,
+  decks: t.maybe(t.list(IDeck))
+}, 'ICaravelContainer');
+  
+export const IDeckContainer = t.struct({
+  adapter: IAdapter,
+  options: t.maybe(t.Object),
+  config: IConfig,
+  on: IEventBindings,
+  map: t.Object
+}, 'IDeckContainer');

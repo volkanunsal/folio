@@ -9,9 +9,9 @@
     "build:umd": "webpack src/index.js dist/caravel.js && NODE_ENV=production webpack src/index.js dist/caravel.min.js",
     "lint": "NODE_ENV=development eslint src test examples",
     "test": "NODE_ENV=test mocha",
-    "test:watch": "NODE_ENV=development mocha --watch",
+    "test:watch": "NODE_ENV=test mocha --watch",
     "test:cov": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
-    "prepublish": "npm run lint && npm run test && npm run clean && npm run build && npm run build:umd"
+    "publish": "npm run lint && npm run test && npm run clean && npm run build && npm run build:umd"
   },
   "repository": {
     "type": "git",
@@ -32,14 +32,14 @@
     "react-dom": "^0.14.0",
     "tcomb": "2.5.1",
     "tcomb-react": "0.8.9",
-    "tcomb-validation": "2.1.0"
+    "tcomb-validation": "2.1.0",
+    "whatwg-fetch": "~0.9.0"
   },
   "devDependencies": {
     "babel": "^5.5.8",
     "babel-core": "^5.6.18",
     "babel-eslint": "^3.1.15",
     "babel-loader": "^5.1.4",
-    "babel-plugin-tcomb": "gcanti/babel-plugin-tcomb",
     "babel-plugin-rewire": "0.1.23-beta-3",
     "chai": "*",
     "deep-equal": "1.0.0",

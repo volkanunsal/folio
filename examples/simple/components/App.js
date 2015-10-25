@@ -1,18 +1,16 @@
 /*globals L*/
 import React, { Component } from 'react';
 import Caravel from 'caravel';
-import {
-  LMap,
-  LImageTile,
-  LMarker,
-  LControl,
-  LCircle,
-  LPopup
-} from 'caravel/adapters';
+import LMap from 'caravel/adapters/LMap';
+import LTile from 'caravel/adapters/LTile';
+import LMarker from 'caravel/adapters/LMarker';
+import LControl from 'caravel/adapters/LControl';
+import LCircle from 'caravel/adapters/LCircle';
+import LPopup from 'caravel/adapters/LPopup';
 
 export default class App extends Component {
   state = {
-    map: {
+    schema: {
       adapter: LMap,
       config: {
         name: 'myMap',
@@ -29,7 +27,7 @@ export default class App extends Component {
         /*
           Adapter manages all interaction with the Leaflet.
         */
-        adapter: LImageTile,
+        adapter: LTile,
 
         /*
           Any configuraiton option that is not specifically required by a Leaflet plugin
@@ -90,7 +88,7 @@ export default class App extends Component {
           name: 'Control 1',
           // Content can be a string or a function that returns the content,
           // e.g. React component.
-          content: () => <div>I am in a control box!</div>
+          content: () => <div style={{background: 'white', padding: 20}}>I am in a box!</div>
         },
         options: {
           position: 'topright',
@@ -113,9 +111,6 @@ export default class App extends Component {
   }
 
   render() {
-    return <Caravel
-      map={this.state.map}
-      decks={this.state.decks}
-    />;
+    return <Caravel schema={this.state.schema} decks={this.state.decks} />;
   }
 }
