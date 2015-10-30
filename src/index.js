@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import Deck from './Deck';
 import deepEqual from 'deep-equal';
-import {attachEventBindings} from './utils';
+import attachEventBindings from './utils/attachEventBindings';
 import {props} from 'tcomb-react';
-import {ICaravelContainer} from './interfaces';
+import {ICaravelContainer, IAdapterReturnType} from './interfaces';
 let _map = undefined;
 
 @props(ICaravelContainer)
 export default class Caravel extends Component {
   componentDidMount() {
     if (!_map) {
-      _map = this.props.schema.adapter.create.call(this, this.props.schema.options, this.props.schema.config);
-      if (this.props.schema.on) {
-        attachEventBindings(this.props.schema.on);
+      let {options, config, on} = this.props.schema;
+      let adapter = this.props.schema.adapter({options, config});
+      _map = IAdapterReturnType(adapter).create({node: this.refs.map});
+      if (on) {
+        attachEventBindings(on);
       }
       this.forceUpdate();
     };
@@ -23,7 +25,9 @@ export default class Caravel extends Component {
     // @see: https://github.com/facebook/react/issues/4025#issuecomment-109067628
     if (_map) {
       if (!deepEqual(np.schema.options, this.props.schema.options) || !deepEqual(np.schema.config, this.props.schema.config)) {
-        np.schema.adapter.update.call(this, np.schema.options, np.schema.config);
+        let {options, config} = np.schema;
+        let adapter = np.schema.adapter({options, config});
+        IAdapterReturnType(adapter).update({element: _map});
       };
     }
   }

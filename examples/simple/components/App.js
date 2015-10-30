@@ -1,12 +1,12 @@
 /*globals L*/
 import React, { Component } from 'react';
 import Caravel from 'caravel';
-import LMap from 'caravel/adapters/LMap';
-import LTile from 'caravel/adapters/LTile';
-import LMarker from 'caravel/adapters/LMarker';
-import LControl from 'caravel/adapters/LControl';
-import LCircle from 'caravel/adapters/LCircle';
-import LPopup from 'caravel/adapters/LPopup';
+import LMap from 'caravel/adapters/L/Map';
+import LTile from 'caravel/adapters/L/Tile';
+import LMarker from 'caravel/adapters/L/Marker';
+import LControl from 'caravel/adapters/L/Control';
+import LCircle from 'caravel/adapters/L/Circle';
+import LPopup from 'caravel/adapters/L/Popup';
 
 export default class App extends Component {
   state = {
@@ -88,7 +88,9 @@ export default class App extends Component {
           name: 'Control 1',
           // Content can be a string or a function that returns the content,
           // e.g. React component.
-          content: () => <div style={{background: 'white', padding: 20}}>I am in a box!</div>
+          content: () => <div style={{background: 'white', padding: 20}}>
+            I am in a box!
+          </div>
         },
         options: {
           position: 'topright',

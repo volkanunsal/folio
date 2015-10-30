@@ -1,22 +1,31 @@
 import { Component } from 'react';
 import deepEqual from 'deep-equal';
 import {props} from 'tcomb-react';
-import {IDeckContainer} from './interfaces';
+import {IDeckContainer, IAdapterReturnType} from './interfaces';
+import attachEventBindings from './utils/attachEventBindings';
 
 @props(IDeckContainer)
 export default class Deck extends Component {
   componentDidMount() {
-    this.element = this.props.adapter.create(this.props.options, this.props.config);
-    this.props.adapter.add(this.element, this.props.map);
-    this.props.adapter.update ? this.props.adapter.update.call(this, this.element, this.props.options, this.props.config) : undefined;
+    let {options, config} = this.props;
+    let adapter = this.props.adapter({options, config});
+
+    this.element = IAdapterReturnType(adapter).create({owner: this.props.map});
+    IAdapterReturnType(adapter).update({element: this.element});
   }
   componentWillUnmount() {
-    this.props.adapter.remove(this.element, this.props.map);
+    let {options, config} = this.props;
+    let adapter = this.props.adapter({options, config});
+    IAdapterReturnType(adapter)
+      .remove({element: this.element, owner: this.props.map});
   }
   componentWillReceiveProps(np) {
-    np.adapter.update.call(this, this.element, np.options, np.config);
+    let {options, config} = np;
+    let adapter = np.adapter({options, config});
+    IAdapterReturnType(adapter).update({element: this.element});
   }
   shouldComponentUpdate(np) {
+    // OPTIMIZE: can we use a persistent data structure to get rid of deepEqual checks?
     return !this.props.config || !deepEqual(np.config, this.props.config) || !deepEqual(np.options, this.props.options)
   }
   render() {
