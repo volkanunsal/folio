@@ -5,8 +5,7 @@ import Caravel from '../src';
 import React from 'react';
 import t from 'tcomb';
 import {deepRender, shallowRender} from './test-utils';
-let makeAdapter = () => ({
-  add: sinon.spy(),
+let makeAdapter = ()  => (/*{options, config}*/) => ({
   create: sinon.spy(),
   update: sinon.spy(),
   remove: sinon.spy()
@@ -73,19 +72,6 @@ describe('Caravel', () => {
         expect(deckSpy).to.have.been.calledWithMatch(enabled);
         expect(deckSpy).to.have.not.been.calledWithMatch(disabled);
       });
-      it('should pass the map object to deck container', () => {
-        // Replace the spy with a stub that can return a value.
-        deepRender(props, Caravel);
-        expect(deckSpy).to.have.been.calledWithMatch({map: mapObj});
-      });
-      it('should pass the adapter to deck container', () => {
-        deepRender(props, Caravel);
-        expect(deckSpy).to.have.been.calledWithMatch({adapter: props.decks[0].adapter});
-      });
-      it('should pass the event bindings to deck container', () => {
-        deepRender(props, Caravel);
-        expect(deckSpy).to.have.been.calledWithMatch({on: props.decks[0].on});
-      });
     });
     describe('if the map has NOT been mounted', () => {
       it('should NOT render any decks', () => {
@@ -94,8 +80,9 @@ describe('Caravel', () => {
       });
       it('should create a new map', () => {
         deepRender(props, Caravel);
-        expect(props.schema.adapter.create).to.have.been.called;
-        expect(props.schema.adapter.update).to.have.not.been.called;
+        // Not sure about this one...
+        expect(props.schema.adapter().create).to.have.been.called;
+        expect(props.schema.adapter().update).to.have.not.been.called;
       });
     });
   });

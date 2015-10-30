@@ -4,11 +4,13 @@
   "env": {
     "development": {
       "plugins": [
+        "tcomb"
       ]
     },
     "test": {
       "plugins": [
-        "rewire"
+        "rewire",
+        "tcomb"
       ]
     }
   }
