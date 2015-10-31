@@ -2,7 +2,7 @@
 import t from 'tcomb';
 const {L} = window;
 import ReactDOM from 'react-dom';
-import {control} from '../../plugins/Control';
+import {control} from './plugins/Control';
 
 export default function({ config: c, options: o }) {
   return {

@@ -3,11 +3,11 @@ import t from 'tcomb';
 export const IEventBindings = t.maybe(t.dict(t.String, t.Function));
 
 export const IAdapter = t.Function;
-export const  IAdapterReturnType = t.struct({
+export const  IAdapterReturn = t.struct({
   create: t.Function,
-  update: t.maybe(t.Function),
+  update: t.Function,
   remove: t.Function
-}, 'IAdapterReturnType');
+}, 'IAdapterReturn');
 
 export const IConfig = t.struct({
   name: t.String,
@@ -25,15 +25,15 @@ export const IDeck = t.struct({
   on: IEventBindings
 }, 'IDeck');
 
-export const ICaravelContainer = t.struct({
+export const IFolio = t.struct({
   schema: IDeck,
   decks: t.maybe(t.list(IDeck))
-}, 'ICaravelContainer');
+}, 'IFolio');
 
-export const IDeckContainer = t.struct({
+export const IPlaten = t.struct({
   adapter: IAdapter,
   options: t.maybe(t.Object),
   config: IConfig,
   on: IEventBindings,
   map: t.Object
-}, 'IDeckContainer');
+}, 'IPlaten');

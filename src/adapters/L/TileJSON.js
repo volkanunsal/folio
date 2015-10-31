@@ -2,7 +2,7 @@
 import t from 'tcomb';
 const {L} = window;
 
-import {tileJSON} from '../../plugins/TileJSONLayer';
+import {tileJSON} from './plugins/TileJSONLayer';
 
 export default function({ config: c, options: o }) {
   return {

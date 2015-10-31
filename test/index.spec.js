@@ -1,7 +1,7 @@
 /*eslint no-unused-expressions: 0*/
 import {expect} from 'chai';
 import sinon from 'sinon';
-import Caravel from '../src';
+import Folio from '../src';
 import React from 'react';
 import t from 'tcomb';
 import {deepRender, shallowRender} from './test-utils';
@@ -25,7 +25,7 @@ let props = {
     {
       adapter: makeAdapter(),
       config: {
-        name: 'Deck1',
+        name: 'Plate1',
         enabled: true
       },
       on: {
@@ -35,7 +35,7 @@ let props = {
     {
       adapter: makeAdapter(),
       config: {
-        name: 'Deck2',
+        name: 'Plate2',
         enabled: false
       },
       on: {
@@ -46,27 +46,27 @@ let props = {
 };
 
 let deckSpy;
-describe('Caravel', () => {
+describe('Folio', () => {
   beforeEach(() => {
     deckSpy = sinon.spy();
-    Caravel.__Rewire__('Deck', (args) => {
+    Folio.__Rewire__('Plate', (args) => {
       deckSpy(args);
       return <div/>
     });
   });
   afterEach(() => {
-    Caravel.__RewireAPI__.__ResetDependency__('Deck');
+    Folio.__RewireAPI__.__ResetDependency__('Plate');
   });
   describe('when the component is mounted', () => {
     describe('if the map has been mounted', () => {
       beforeEach(() => {
-        Caravel.__Rewire__('_map', mapObj);
+        Folio.__Rewire__('_map', mapObj);
       });
       afterEach(() => {
-        Caravel.__ResetDependency__('_map');
+        Folio.__ResetDependency__('_map');
       });
       it('should render the enabled decks', () => {
-        deepRender(props, Caravel);
+        deepRender(props, Folio);
         let enabled = props.decks.filter(o => o.config.enabled)[0];
         let disabled = props.decks.filter(o => !o.config.enabled)[0];
         expect(deckSpy).to.have.been.calledWithMatch(enabled);
@@ -75,11 +75,11 @@ describe('Caravel', () => {
     });
     describe('if the map has NOT been mounted', () => {
       it('should NOT render any decks', () => {
-        deepRender(props, Caravel);
+        deepRender(props, Folio);
         expect(deckSpy).to.have.not.been.called;
       });
       it('should create a new map', () => {
-        deepRender(props, Caravel);
+        deepRender(props, Folio);
         // Not sure about this one...
         expect(props.schema.adapter().create).to.have.been.called;
         expect(props.schema.adapter().update).to.have.not.been.called;
@@ -89,19 +89,19 @@ describe('Caravel', () => {
   describe('when event bindings are specified for map', () => {
     it('should attach the event bindings to the map', () => {
       let eventSpy = sinon.spy();
-      Caravel.__RewireAPI__.__Rewire__('attachEventBindings', eventSpy);
-      deepRender(props, Caravel);
+      Folio.__RewireAPI__.__Rewire__('attachEventBindings', eventSpy);
+      deepRender(props, Folio);
       expect(eventSpy).to.have.been.calledWith(props.schema.on);
-      Caravel.__RewireAPI__.__ResetDependency__('attachEventBindings');
+      Folio.__RewireAPI__.__ResetDependency__('attachEventBindings');
     });
   });
   describe('when event bindings are not specified for map', () => {
     it('should not attach the event bindings to the map', () => {
       let eventSpy = sinon.spy();
-      Caravel.__RewireAPI__.__Rewire__('attachEventBindings', eventSpy);
-      deepRender(t.update(props, {schema: {on: {$set: undefined}}}), Caravel);
+      Folio.__RewireAPI__.__Rewire__('attachEventBindings', eventSpy);
+      deepRender(t.update(props, {schema: {on: {$set: undefined}}}), Folio);
       expect(eventSpy).to.have.not.been.called;
-      Caravel.__RewireAPI__.__ResetDependency__('attachEventBindings');
+      Folio.__RewireAPI__.__ResetDependency__('attachEventBindings');
     });
   });
   xdescribe('when it will receive props', () => {
@@ -111,7 +111,7 @@ describe('Caravel', () => {
     });
   });
   it('should render correctly', () => {
-    const { output } = shallowRender(props, Caravel);
+    const { output } = shallowRender(props, Folio);
     let [div1] = output.props.children;
     expect(div1.ref).to.eql('map');
     expect(div1.props.style).to.deep.eql({width: 800});

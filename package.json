@@ -41,7 +41,6 @@
     "babel-eslint": "^3.1.15",
     "babel-loader": "^5.1.4",
     "babel-plugin-rewire": "0.1.23-beta-3",
-    "babel-plugin-tcomb": "^0.1.1",
     "chai": "*",
     "deep-equal": "1.0.0",
     "eslint": "^0.23",

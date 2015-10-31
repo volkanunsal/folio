@@ -17,7 +17,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      'caravel': path.join(__dirname, '..', '..', 'src')
+      'folio': path.join(__dirname, '..', '..', 'src')
     },
     extensions: ['', '.js']
   },
@@ -29,7 +29,7 @@ module.exports = {
       include: __dirname
     }, {
       test: /\.js$/,
-      loaders: ['babel?plugins=tcomb'],
+      loaders: ['babel'],
       include: path.join(__dirname, '..', '..', 'src')
     }]
   }

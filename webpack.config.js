@@ -29,7 +29,7 @@ module.exports = {
     }]
   },
   output: {
-    library: 'caravel',
+    library: 'folio',
     libraryTarget: 'umd'
   },
   plugins: plugins,

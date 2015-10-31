@@ -1,17 +1,4 @@
 {
   "stage": 0,
-  "loose": "all",
-  "env": {
-    "development": {
-      "plugins": [
-        "tcomb"
-      ]
-    },
-    "test": {
-      "plugins": [
-        "rewire",
-        "tcomb"
-      ]
-    }
-  }
+  "loose": "all"
 }

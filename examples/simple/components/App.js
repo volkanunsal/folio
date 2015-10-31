@@ -1,12 +1,12 @@
 /*globals L*/
 import React, { Component } from 'react';
-import Caravel from 'caravel';
-import LMap from 'caravel/adapters/L/Map';
-import LTile from 'caravel/adapters/L/Tile';
-import LMarker from 'caravel/adapters/L/Marker';
-import LControl from 'caravel/adapters/L/Control';
-import LCircle from 'caravel/adapters/L/Circle';
-import LPopup from 'caravel/adapters/L/Popup';
+import Folio from 'folio';
+import LMap from 'folio/adapters/L/Map';
+import LTile from 'folio/adapters/L/Tile';
+import LMarker from 'folio/adapters/L/Marker';
+import LControl from 'folio/adapters/L/Control';
+import LCircle from 'folio/adapters/L/Circle';
+import LPopup from 'folio/adapters/L/Popup';
 
 export default class App extends Component {
   state = {
@@ -19,7 +19,8 @@ export default class App extends Component {
       },
       options: {
         zoom: 13,
-        center: [51.5, -0.09]
+        center: [51.5, -0.09],
+        zoomControl: true
       }
     },
     decks: [
@@ -113,6 +114,6 @@ export default class App extends Component {
   }
 
   render() {
-    return <Caravel schema={this.state.schema} decks={this.state.decks} />;
+    return <Folio schema={this.state.schema} decks={this.state.decks} />;
   }
 }
