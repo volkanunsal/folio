@@ -107,6 +107,7 @@ export default class App extends Component {
         },
         options: {
           color: 'red',
+          fillOpacity: 0.3,
           stroke: false
         }
       }
