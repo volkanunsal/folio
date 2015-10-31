@@ -72,3 +72,9 @@ Schema has exactly the same interface as deck, but it's used exclusively for con
   }
 }
 ```
+
+
+## TODO
+
+[] Add more pluging
+[] Write tests
