@@ -37,20 +37,6 @@ Deck is a simple Javascript object and it looks like this:
 }
 ```
 
-## Adapter
-
-Each deck includes an adapter, which provides the bridge to Leaflet. An adapter is a function that takes an object as a function and returns three methods: create, update, and remove.
-
-```javascript
-export default function({ config: c, options: o }) {
-  return {
-    create: ({owner: ow}) => {  },
-    update: ({element: e}) => {  },
-    remove: ({element: e, owner: ow}) => {  }
-  };
-}
-```
-
 You will use decks to configure any of these elements, with the notable exception of the 'map' itself. For that, you need to use schema.
 
 ## Schema
@@ -73,8 +59,22 @@ Schema has exactly the same interface as deck, but it's used exclusively for con
 }
 ```
 
+## Adapter
+
+Each deck includes an adapter, which provides the bridge to Leaflet. An adapter is a function that takes an object as a function and returns three methods: create, update, and remove.
+
+```javascript
+export default function({ config: c, options: o }) {
+  return {
+    create: ({owner: ow}) => {  },
+    update: ({element: e}) => {  },
+    remove: ({element: e, owner: ow}) => {  }
+  };
+}
+```
+
 
 ## TODO
 
-- [] Add more pluging
-- [] Write tests
+- [ ] Add more plugins
+- [ ] Write tests
