@@ -11,12 +11,12 @@ Super simple React bindings for Leaflet maps.
 
 folio is a React component that manages Leaflet maps using native Javascript data structures.
 
-## Terminology
-
-
 ```jsx
   <Folio schema={this.state.schema} decks={this.state.decks} />
 ```
+
+## Terminology
+
 
 ## Deck
 
@@ -76,5 +76,5 @@ Schema has exactly the same interface as deck, but it's used exclusively for con
 
 ## TODO
 
-[] Add more pluging
-[] Write tests
+- [] Add more pluging
+- [] Write tests
