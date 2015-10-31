@@ -1,7 +1,7 @@
 # fo·li·o
 
 **/ˈfōlēˌō/**
-  
+
 *noun*. an individual leaf of paper or parchment
 
 
@@ -111,10 +111,9 @@ export default function({ config: c, options: o }) {
 }
 ```
 
-
+  
 ## TODO
 
-- [ ] Event binders
 - [ ] Associations
 - [ ] Add more plugins
 - [ ] Write tests
