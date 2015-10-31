@@ -1,12 +1,12 @@
 {
-  "name": "caravel",
+  "name": "folio-leaflet",
   "version": "0.0.1",
   "description": "Simple React bindings for Leaflet",
   "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf lib dist",
     "build": "NODE_ENV=production babel src --out-dir lib",
-    "build:umd": "webpack src/index.js dist/caravel.js && NODE_ENV=production webpack src/index.js dist/caravel.min.js",
+    "build:umd": "webpack src/index.js dist/folio.js && NODE_ENV=production webpack src/index.js dist/folio.min.js",
     "lint": "NODE_ENV=development eslint src test examples",
     "test": "NODE_ENV=test mocha",
     "test:watch": "NODE_ENV=test mocha --watch",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/volkanunsal/caravel.git"
+    "url": "https://github.com/volkanunsal/folio.git"
   },
   "keywords": [
     "leaflet",
@@ -24,9 +24,9 @@
   "author": "Volkan Unsal",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/volkanunsal/caravel/issues"
+    "url": "https://github.com/volkanunsal/folio/issues"
   },
-  "homepage": "https://github.com/volkanunsal/caravel",
+  "homepage": "https://github.com/volkanunsal/folio",
   "dependencies": {
     "react": "^0.14.0",
     "react-dom": "^0.14.0",

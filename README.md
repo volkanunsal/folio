@@ -8,6 +8,12 @@
 Super simple React bindings for Leaflet maps.
 
 
+## Get started
+
+```
+  npm install folio-leaflet
+```
+
 ## How it works
 
 folio is a React component that manages Leaflet maps using native Javascript data structures.
@@ -111,7 +117,7 @@ export default function({ config: c, options: o }) {
 }
 ```
 
-  
+
 ## TODO
 
 - [ ] Associations
