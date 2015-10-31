@@ -1,6 +1,7 @@
 # fo·li·o
 
-**ˈfōlēˌō/**
+**/ˈfōlēˌō/**
+  
 *noun*. an individual leaf of paper or parchment
 
 
@@ -12,8 +13,45 @@ Super simple React bindings for Leaflet maps.
 folio is a React component that manages Leaflet maps using native Javascript data structures.
 
 ```jsx
-  <Folio schema={this.state.schema} decks={this.state.decks} />
+export default class App extends Component {
+  state = {
+    schema: {
+      adapter: LMap,
+      config: {
+        name: 'myMap',
+        style: {width: '100%', height: 800},
+        className: 'myMap'
+      },
+      options: {
+        zoom: 13,
+        center: [51.5, -0.09],
+        zoomControl: true
+      }
+    },
+    decks: [
+      {
+        adapter: LTile,
+        config: {
+          name: 'Basemap',
+          url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+        },
+        options: {
+          attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }
+      }
+    ]
+  }
+  render() {
+    return <Folio schema={this.state.schema} decks={this.state.decks} />
+  }
+}
 ```
+
+## Motivation
+
+* Create associations between map elements.
+* Configure your maps with simple Javascript objects.
+
 
 ## Terminology
 
@@ -76,5 +114,7 @@ export default function({ config: c, options: o }) {
 
 ## TODO
 
+- [ ] Event binders
+- [ ] Associations
 - [ ] Add more plugins
 - [ ] Write tests
