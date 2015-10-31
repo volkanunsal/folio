@@ -21,6 +21,11 @@ export default class App extends Component {
         zoom: 13,
         center: [51.5, -0.09],
         zoomControl: true
+      },
+      on: {
+        click: ({e}) => {
+          console.log(e);
+        }
       }
     },
     decks: [

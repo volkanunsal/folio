@@ -7,11 +7,14 @@ import attachEventBindings from './utils/attachEventBindings';
 @props(IPlaten)
 export default class Plate extends Component {
   componentDidMount() {
-    let {options, config} = this.props;
+    let {options, config, on} = this.props;
     let adapter = this.props.adapter({options, config});
 
     this.element = IAdapterReturn(adapter).create({owner: this.props.map});
     IAdapterReturn(adapter).update({element: this.element});
+    if (on) {
+      attachEventBindings(on, this.element);
+    }
   }
   componentWillUnmount() {
     let {options, config} = this.props;

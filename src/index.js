@@ -14,7 +14,7 @@ export default class Folio extends Component {
       let adapter = this.props.schema.adapter({options, config});
       _map = IAdapterReturn(adapter).create({node: this.refs.map});
       if (on) {
-        attachEventBindings(on);
+        attachEventBindings(on, _map);
       }
       this.forceUpdate();
     };
