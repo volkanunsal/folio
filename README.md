@@ -118,6 +118,7 @@ export default function({ config: c, options: o }) {
 }
 ```
 
+Other interfaces in the domain [can be found here.](https://github.com/volkanunsal/folio/blob/master/src%2Finterfaces.js)
 
 ## TODO
 

@@ -14,7 +14,7 @@ export const IConfig = t.struct({
   enabled: t.maybe(t.Boolean),
   belongsTo: t.maybe(t.struct({
     name: t.String,
-    isOwner: t.Boolean
+    owner: t.maybe(t.Boolean)
   }))
 }, 'IConfig');
 
