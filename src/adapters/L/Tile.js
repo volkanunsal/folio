@@ -1,11 +1,17 @@
 /*globals L*/
 const {L} = window;
+import {tileJSON} from './plugins/TileJSONLayer';
 
 export default function({ config: c, options: o }) {
   return {
     create: ({owner: ow}) => {
-      let {url} = c;
-      let e = L.tileLayer(url, o);
+      let {url, json} = c;
+      let e;
+      if (url.match(/\{x\}/)) {
+        e = L.tileLayer(url, o);
+      } else {
+        e = tileJSON({url, json}, o);
+      }
       ow.addLayer(e);
       return e;
     },

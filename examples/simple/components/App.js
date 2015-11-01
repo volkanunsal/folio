@@ -52,9 +52,20 @@ export default class App extends Component {
         adapter: LMarker,
         config: {
           name: 'Marker 1', // Names must be unique
-          coordinates: [51.5, -0.09]
+          coordinates: [51.5, -0.09],
+          belongsTo: {
+            /*
+              Must belong to an existing deck.
+            */
+            name: 'Marker 1',
+            /*
+              When this property is set to true, the associated object is passed
+              to the adapter methods as the `owner`. By default, `owner` is the map
+              object.
+            */
+            owner: true
+          }
         },
-
         /*
           Event bindings attached to the Leaflet layer.
         */
@@ -66,24 +77,6 @@ export default class App extends Component {
               .setContent('Hello world!')
               .bindTo(e.target)
               .openOn(map);
-          }
-        }
-      },
-      {
-        adapter: LPopup,
-        config: {
-          name: 'Popup 2',
-          belongsTo: {
-            /*
-              Must belong to an existing deck.
-            */
-            name: 'Marker 1',
-            /*
-              When this property is set to true, the associated object is passed
-              to the adapter methods as the `owner`. By default, `owner` is the map
-              object.
-            */
-            isOwner: true
           }
         }
       },
