@@ -5,13 +5,15 @@
   "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf lib dist",
-    "build": "NODE_ENV=production babel src --out-dir lib",
-    "build:umd": "webpack src/index.js dist/folio.js && NODE_ENV=production webpack src/index.js dist/folio.min.js",
+    "build:lib": "babel src --out-dir lib",
+    "build:umd": "webpack src/index.js dist/folio.js",
+    "build:umd:min": "NODE_ENV=production webpack src/index.js dist/folio.min.js",
+    "build": "npm run build:lib && npm run build:umd && npm run build:umd:min",
     "lint": "NODE_ENV=development eslint src test examples",
     "test": "NODE_ENV=test mocha",
     "test:watch": "NODE_ENV=test mocha --watch",
     "test:cov": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
-    "publish": "npm run lint && npm run test && npm run clean && npm run build && npm run build:umd"
+    "publish": "npm run lint && npm run clean && npm run build"
   },
   "repository": {
     "type": "git",
