@@ -55,8 +55,9 @@ export default class App extends Component {
 
 ## Motivation
 
+* Provide a declarative interface to Leaflet
 * Create associations between map elements.
-* Configure your maps with simple Javascript objects.
+* Simplify configuration with Javascript objects.
 
 
 ## Terminology
