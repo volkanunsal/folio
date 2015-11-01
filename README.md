@@ -2,10 +2,10 @@
 
 **/ˈfōlēˌō/**
 
-*noun*. an individual leaf of paper or parchment
+*noun*. a book or pamphlet made up of one or more full sheets of paper.
 
 
-Super simple React bindings for Leaflet maps.
+Super simple, declarative React bindings for Leaflet maps.
 
 
 ## Get started
