@@ -4,6 +4,7 @@ import deepEqual from 'deep-equal';
 import attachEventBindings from './utils/attachEventBindings';
 import {props} from 'tcomb-react';
 import {IFolio, IAdapterReturn} from './interfaces';
+import tcv from 'tcomb-validation';
 let _map = undefined;
 
 @props(IFolio)
@@ -12,7 +13,14 @@ export default class Folio extends Component {
     if (!_map) {
       let {options, config, on} = this.props.schema;
       let adapter = this.props.schema.adapter({options, config});
-      _map = IAdapterReturn(adapter).create({node: this.refs.map});
+
+      if (process.env.NODE_ENV !== 'production') {
+        tcv.assert(
+          tcv.validate(adapter, IAdapterReturn).isValid(),
+          '[folio] Invalid type returned from adapter. Must be an object defining create, update and remove functions.'
+        );
+      }
+      _map = adapter.create({node: this.refs.map});
       if (on) {
         attachEventBindings(on, _map);
       }
@@ -27,7 +35,7 @@ export default class Folio extends Component {
       if (!deepEqual(np.schema.options, this.props.schema.options) || !deepEqual(np.schema.config, this.props.schema.config)) {
         let {options, config} = np.schema;
         let adapter = np.schema.adapter({options, config});
-        IAdapterReturn(adapter).update({element: _map});
+        adapter.update({element: _map});
       };
     }
   }
