@@ -17,7 +17,11 @@ export default function({ config: c, options: o }) {
     },
     update: ({element: e}) => {
       let {url} = c;
-      e.setUrl(url);
+      if (url.match(/\{x\}/)) {
+        e.setUrl(url);
+      } else {
+        tileJSON.prototype.setUrl.call(e, url);
+      }
       return e;
     },
     remove: ({element: e, owner: ow}) => {

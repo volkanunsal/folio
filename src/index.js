@@ -21,8 +21,10 @@ export default class Folio extends Component {
         );
       }
       _map = adapter.create({node: this.refs.map});
+      _map.decks = {};
+      _map.deckStack = {};
       if (on) {
-        attachEventBindings(on, _map);
+        attachEventBindings(on, _map, undefined);
       }
       this.forceUpdate();
     }
@@ -41,7 +43,12 @@ export default class Folio extends Component {
   }
   renderPlates() {
     let dex = [];
-    this.props.decks.filter(o => o.config.enabled !== false).map(({adapter, config, options, on}) => {
+    let disabled = this.props.decks.filter(o => o.config.enabled === false).map(o => o.config.name );
+
+    this.props.decks
+    .filter(o => o.config.enabled !== false) // Filter out disabled decks
+    .filter(o => o.config.belongsTo ? disabled.indexOf(o.config.belongsTo.name) === -1 : true) // Filter out decks whose parent decks have been disabled.
+    .forEach(({adapter, config, options, on}) => {
       dex.push(<Plate config={config} options={options} map={_map} adapter={adapter} key={config.name} on={on} />);
     });
     return dex;

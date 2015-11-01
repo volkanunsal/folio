@@ -6,9 +6,17 @@ import LTile from 'folio/adapters/L/Tile';
 import LMarker from 'folio/adapters/L/Marker';
 import LControl from 'folio/adapters/L/Control';
 import LCircle from 'folio/adapters/L/Circle';
-import LPopup from 'folio/adapters/L/Popup';
+import t from 'tcomb';
 
 export default class App extends Component {
+  toggleBasemap() {
+    this.setState(t.update(this.state, {decks: {$apply: (ls) => ls.map(o => {
+      if (o.config.name === 'Basemap') {
+        o.config.enabled = o.config.enabled === false ? true : false;
+      }
+      return o;
+    })}}));
+  }
   state = {
     schema: {
       adapter: LMap,
@@ -57,13 +65,13 @@ export default class App extends Component {
             /*
               Must belong to an existing deck.
             */
-            name: 'Marker 1',
+            name: 'Basemap'
             /*
               When this property is set to true, the associated object is passed
               to the adapter methods as the `owner`. By default, `owner` is the map
               object.
             */
-            owner: true
+            //, owner: true
           }
         },
         /*
@@ -71,11 +79,10 @@ export default class App extends Component {
         */
         on: {
           // Map object is always the second argument of a callback.
-          click: (e, map) => {
-            L.popup()
+          click: ({e, map}) => {
+            L.popup({closeButton: false, offset: L.point(0, -15)})
               .setLatLng(e.target.getLatLng())
               .setContent('Hello world!')
-              .bindTo(e.target)
               .openOn(map);
           }
         }
@@ -87,7 +94,7 @@ export default class App extends Component {
           // Content can be a string or a function that returns the content,
           // e.g. React component.
           content: () => <div style={{background: 'white', padding: 20}}>
-            I am in a box!
+            <a href='javascript:;' onClick={::this.toggleBasemap}>Toggle basemap</a>
           </div>
         },
         options: {
@@ -100,7 +107,10 @@ export default class App extends Component {
         config: {
           name: 'Circle 1',
           coordinates: [51.5, -0.09],
-          radius: 1000 // meters
+          radius: 1000, // meters
+          belongsTo: {
+            name: 'Basemap'
+          }
         },
         options: {
           color: 'red',
