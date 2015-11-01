@@ -5,7 +5,7 @@ import attachEventBindings from './utils/attachEventBindings';
 import {props} from 'tcomb-react';
 import {IFolio, IAdapterReturn} from './interfaces';
 import tcv from 'tcomb-validation';
-let _map = undefined;
+let _map;
 
 @props(IFolio)
 export default class Folio extends Component {
@@ -25,7 +25,7 @@ export default class Folio extends Component {
         attachEventBindings(on, _map);
       }
       this.forceUpdate();
-    };
+    }
   }
   componentWillReceiveProps(np) {
     // NOTE: Unable to test this due to a feature of React that causes problems
@@ -36,12 +36,12 @@ export default class Folio extends Component {
         let {options, config} = np.schema;
         let adapter = np.schema.adapter({options, config});
         adapter.update({element: _map});
-      };
+      }
     }
   }
   renderPlates() {
     let dex = [];
-    this.props.decks.filter(o => o.config.enabled != false).map(({adapter, config, options, on}) => {
+    this.props.decks.filter(o => o.config.enabled !== false).map(({adapter, config, options, on}) => {
       dex.push(<Plate config={config} options={options} map={_map} adapter={adapter} key={config.name} on={on} />);
     });
     return dex;

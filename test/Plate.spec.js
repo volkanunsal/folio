@@ -1,7 +1,6 @@
-/*eslint no-unused-expressions: 0*/
+/*eslint-disable*/
 import {expect} from 'chai';
 import sinon from 'sinon';
-import t from 'tcomb';
 import {deepRender, shallowRender} from './test-utils';
 import React from 'react';
 import ReactDOM from 'react-dom';

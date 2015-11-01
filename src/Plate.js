@@ -35,9 +35,9 @@ export default class Plate extends Component {
   }
   shouldComponentUpdate(np) {
     // OPTIMIZE: can we use a persistent data structure to get rid of deepEqual checks?
-    return !this.props.config || !deepEqual(np.config, this.props.config) || !deepEqual(np.options, this.props.options)
+    return !this.props.config || !deepEqual(np.config, this.props.config) || !deepEqual(np.options, this.props.options);
   }
   render() {
-    return null
+    return null;
   }
 }

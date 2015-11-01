@@ -1,6 +1,5 @@
 /*globals L*/
 const {L} = window;
-import t from 'tcomb';
 import getZoomStyle from 'folio/utils/getZoomStyle';
 import getLatLon from 'folio/utils/getLatLon';
 
@@ -14,7 +13,7 @@ let defaultZoomStyles = {
   17: { radius: 8, weight: 7},
   ['>=18']: { radius: 10, weight: 8 }
 };
-  
+
 export default function({ config: c, options: o }) {
   return {
     create: ({owner: ow}) => {
@@ -28,12 +27,12 @@ export default function({ config: c, options: o }) {
         let curLevelStyles = getZoomStyle(ow.getZoom(), zoomStyles || defaultZoomStyles);
         e.setStyle(curLevelStyles);
       });
-      return e
+      return e;
     },
     update: ({element: e}) => {
       let {coordinates} = c;
       let latlon = getLatLon(coordinates);
-      e.setLatLng(coordinates);
+      e.setLatLng(latlon);
       return e;
     },
     remove: ({element: e, owner: ow}) => {

@@ -5,7 +5,7 @@ import Folio from '../src';
 import React from 'react';
 import t from 'tcomb';
 import {deepRender, shallowRender} from './test-utils';
-let makeAdapter = ()  => (/*{options, config}*/) => ({
+let makeAdapter = () => (/*{options, config}*/) => ({
   create: sinon.spy(),
   update: sinon.spy(),
   remove: sinon.spy()
@@ -51,7 +51,7 @@ describe('Folio', () => {
     deckSpy = sinon.spy();
     Folio.__Rewire__('Plate', (args) => {
       deckSpy(args);
-      return <div/>
+      return <div/>;
     });
   });
   afterEach(() => {

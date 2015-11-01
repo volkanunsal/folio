@@ -1,7 +1,5 @@
 /*globals L*/
-import t from 'tcomb';
 const {L} = window;
-
 
 export default function({ config: c, options: o }) {
   return {

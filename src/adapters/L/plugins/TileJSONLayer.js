@@ -1,3 +1,4 @@
+/*eslint no-console: 0, new-cap: 0*/
 /*globals L*/
 const L = window.L;
 import t from 'tcomb';
@@ -16,7 +17,6 @@ const TileJSONLayer = {
   scalePrefix: '@2x.',
 
   initialize(config, options) {
-    console.log(this)
     // Call the initializer of superclass.
     L.TileLayer.prototype.initialize.call(this, void 0, options);
     this._tilejson = {};

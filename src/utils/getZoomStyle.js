@@ -1,3 +1,4 @@
+/*eslint no-eval: 0*/
 import t from 'tcomb';
 
 export default function getZoomStyle(zoom, styles) {
@@ -8,7 +9,7 @@ export default function getZoomStyle(zoom, styles) {
     chars = chars ? chars[0] : '===';
     if (digs && chars && eval(zoom + chars + digs)) {
       style = styles[key];
-    };
+    }
   });
   return t.Object(style);
 }

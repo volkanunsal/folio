@@ -3,7 +3,7 @@ import t from 'tcomb';
 export const IEventBindings = t.maybe(t.dict(t.String, t.Function));
 
 export const IAdapter = t.Function;
-export const  IAdapterReturn = t.struct({
+export const IAdapterReturn = t.struct({
   create: t.Function,
   update: t.Function,
   remove: t.Function

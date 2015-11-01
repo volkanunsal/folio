@@ -1,7 +1,4 @@
 /*globals L*/
-import t from 'tcomb';
-const {L} = window;
-
 import {tileJSON} from './plugins/TileJSONLayer';
 
 export default function({ config: c, options: o }) {
@@ -9,7 +6,7 @@ export default function({ config: c, options: o }) {
     create: ({owner: ow}) => {
       let {url, json} = c;
       let e = tileJSON({url, json}, o);
-      ow.addLayer(element);
+      ow.addLayer(e);
       return e;
     },
     update: ({element: e}) => {

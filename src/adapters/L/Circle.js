@@ -17,10 +17,10 @@ export default function({ config: c, options: o }) {
       let {coordinates, radius} = c;
       if (coordinates) {
         e.setLatLng(coordinates);
-      };
+      }
       if (radius) {
         e.setRadius(radius);
-      };
+      }
       return e;
     },
     remove: ({element: e, owner: ow}) => {

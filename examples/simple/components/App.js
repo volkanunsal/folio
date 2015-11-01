@@ -23,8 +23,7 @@ export default class App extends Component {
         zoomControl: true
       },
       on: {
-        click: ({e}) => {
-          console.log(e);
+        click: (/*{e}*/) => {
         }
       }
     },
