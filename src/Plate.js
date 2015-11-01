@@ -36,7 +36,7 @@ export default class Plate extends Component {
       owner = this.props.map.decks[config.belongsTo.name];
       if (!owner) {
         // TODO: add the deck name into the stack.
-        return;
+        return null;
       }
     } else {
       owner = this.props.map;

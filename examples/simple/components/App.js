@@ -1,4 +1,5 @@
 /*globals L*/
+/*eslint no-script-url: 0*/
 import React, { Component } from 'react';
 import Folio from 'folio';
 import LMap from 'folio/adapters/L/Map';
@@ -71,7 +72,6 @@ export default class App extends Component {
               to the adapter methods as the `owner`. By default, `owner` is the map
               object.
             */
-            //, owner: true
           }
         },
         /*

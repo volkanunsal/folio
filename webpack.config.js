@@ -24,7 +24,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: ['babel?plugins=plugins=rewire'],
+      loaders: ['babel'],
       exclude: /node_modules/
     }]
   },
