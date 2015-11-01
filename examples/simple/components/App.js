@@ -7,8 +7,9 @@ import LTile from 'folio/adapters/L/Tile';
 import LMarker from 'folio/adapters/L/Marker';
 import LControl from 'folio/adapters/L/Control';
 import LCircle from 'folio/adapters/L/Circle';
+import LCircleMarker from 'folio/adapters/L/CircleMarker';
 import t from 'tcomb';
-
+let i = 0;
 export default class App extends Component {
   toggleBasemap() {
     this.setState(t.update(this.state, {decks: {$apply: (ls) => ls.map(o => {
@@ -32,7 +33,21 @@ export default class App extends Component {
         zoomControl: true
       },
       on: {
-        click: (/*{e}*/) => {
+        click: ({e, element}) => {
+          element.panTo(e.latlng);
+          let coordinates = e.latlng;
+          this.setState(t.update(this.state, {
+            decks: {
+              $push: [{
+                adapter: LCircleMarker,
+                config: {
+                  name: `marker ${i++}`,
+                  coordinates
+                },
+                options: { clickable: false }
+              }]
+            }
+          }));
         }
       }
     },
@@ -50,7 +65,8 @@ export default class App extends Component {
         */
         config: {
           name: 'Basemap',
-          url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+          // url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+          url: 'http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png'
         },
         options: {
           // The options are passed directly into Leaflet

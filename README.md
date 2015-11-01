@@ -123,5 +123,4 @@ Other interfaces in the domain [can be found here.](https://github.com/volkanuns
 ## TODO
 
 - [ ] Associations
-- [ ] Add more plugins
 - [ ] Write tests
