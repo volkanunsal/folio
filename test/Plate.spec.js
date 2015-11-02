@@ -24,22 +24,6 @@ describe('Plate', () => {
   beforeEach(() => {
     plateSpy = sinon.spy();
   });
-  xdescribe('when mounted', () => {
-    it('should call adapter.create', () => {
-      deepRender(props, Plate);
-      expect(props.adapter().create).to.have.been.called;
-    });
-  });
-  xdescribe('when unmounted', () => {
-    it('should call adapter.destroy with element, options and config', () => {
-      // body...
-    });
-  });
-  xdescribe('when it will receive props', () => {
-    describe('when the options or config have changed', () => {
-      it('should call adapter.update with proper arguments', () => {
-      });
-    });
-  });
+  
 
 });

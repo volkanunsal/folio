@@ -5,29 +5,27 @@ import attachEventBindings from './utils/attachEventBindings';
 import {props} from 'tcomb-react';
 import {IFolio, IAdapterReturn} from './interfaces';
 import tcv from 'tcomb-validation';
-let _map;
+let _map = null;
 
 @props(IFolio)
 export default class Folio extends Component {
   componentDidMount() {
-    if (!_map) {
-      let {options, config, on} = this.props.schema;
-      let adapter = this.props.schema.adapter({options, config});
+    let {options, config, on} = this.props.schema;
+    let adapter = this.props.schema.adapter({options, config});
 
-      if (process.env.NODE_ENV !== 'production') {
-        tcv.assert(
-          tcv.validate(adapter, IAdapterReturn).isValid(),
-          '[folio] Invalid type returned from adapter. Must be an object defining create, update and remove functions.'
-        );
-      }
-      _map = adapter.create({node: this.refs.map});
-      _map.decks = {};
-      _map.deckStack = {};
-      if (on) {
-        attachEventBindings(on, _map, undefined);
-      }
-      this.forceUpdate();
+    if (process.env.NODE_ENV !== 'production') {
+      tcv.assert(
+        tcv.validate(adapter, IAdapterReturn).isValid(),
+        '[folio] Invalid type returned from adapter. Must be an object defining create, update and remove functions.'
+      );
     }
+    _map = adapter.create({node: this.refs.map});
+    _map.decks = {};
+    _map.deckStack = {};
+    if (on) {
+      attachEventBindings(on, _map, undefined);
+    }
+    this.forceUpdate();
   }
   componentWillReceiveProps(np) {
     // NOTE: Unable to test this due to a feature of React that causes problems
@@ -43,8 +41,8 @@ export default class Folio extends Component {
   }
   renderPlates() {
     let dex = [];
+    if (!_map) { return dex; }
     let disabled = this.props.decks.filter(o => o.config.enabled === false).map(o => o.config.name );
-
     this.props.decks
     .filter(o => o.config.enabled !== false) // Filter out disabled decks
     .filter(o => o.config.belongsTo ? disabled.indexOf(o.config.belongsTo.name) === -1 : true) // Filter out decks whose parent decks have been disabled.
@@ -54,11 +52,10 @@ export default class Folio extends Component {
     return dex;
   }
   render() {
-    let dex = _map ? this.renderPlates() : [];
     let mapConfig = this.props.schema.config;
     return <div className='folio'>
       <div ref='map' style={mapConfig.style} className={mapConfig.className}/>
-      <div>{dex}</div>
+      <div>{this.renderPlates()}</div>
     </div>;
   }
 }

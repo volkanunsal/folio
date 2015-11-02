@@ -2,9 +2,7 @@
 import {expect} from 'chai';
 import sinon from 'sinon';
 import Folio from '../src';
-import React from 'react';
-import t from 'tcomb';
-import {deepRender, shallowRender} from './test-utils';
+import {shallowRender} from './test-utils';
 let makeAdapter = () => (/*{options, config}*/) => ({
   create: sinon.spy(),
   update: sinon.spy(),
@@ -29,7 +27,7 @@ let props = {
         enabled: true
       },
       on: {
-        click: 'event bindings 1'
+        click: () => {}
       }
     },
     {
@@ -39,78 +37,45 @@ let props = {
         enabled: false
       },
       on: {
-        click: 'event bindings 2'
+        click: () => {}
+      }
+    },
+    {
+      adapter: makeAdapter(),
+      config: {
+        name: 'Plate3',
+        belongsTo: {
+          name: 'Plate2'
+        }
+      },
+      on: {
+        click: () => {}
       }
     }
   ]
 };
 
-let deckSpy;
 describe('Folio', () => {
-  beforeEach(() => {
-    deckSpy = sinon.spy();
-    Folio.__Rewire__('Plate', (args) => {
-      deckSpy(args);
-      return <div/>;
+  afterEach(() => { Folio.__RewireAPI__.__ResetDependency__('Plate'); });
+  describe('if _map exists', () => {
+    beforeEach(() => { Folio.__Rewire__('_map', mapObj); });
+    afterEach(() => { Folio.__ResetDependency__('_map'); });
+    it('should render the enabled decks', () => {
+      const {output} = shallowRender(props, Folio);
+      expect(output.props.children[1].props.children.map(o => o.props.config.name)).to.contain('Plate1');
+    });
+    it('should not render disabled decks', () => {
+      const {output} = shallowRender(props, Folio);
+      expect(output.props.children[1].props.children.map(o => o.props.config.name)).to.not.contain('Plate2');
+    });
+
+    it('should not render decks that belong to disabled decks', () => {
+      const {output} = shallowRender(props, Folio);
+      expect(output.props.children[1].props.children.map(o => o.props.config.name)).to.not.contain('Plate3');
     });
   });
-  afterEach(() => {
-    Folio.__RewireAPI__.__ResetDependency__('Plate');
-  });
-  describe('when the component is mounted', () => {
-    describe('if the map has been mounted', () => {
-      beforeEach(() => {
-        Folio.__Rewire__('_map', mapObj);
-      });
-      afterEach(() => {
-        Folio.__ResetDependency__('_map');
-      });
-      it('should render the enabled decks', () => {
-        deepRender(props, Folio);
-        let enabled = props.decks.filter(o => o.config.enabled)[0];
-        let disabled = props.decks.filter(o => !o.config.enabled)[0];
-        expect(deckSpy).to.have.been.calledWithMatch(enabled);
-        expect(deckSpy).to.have.not.been.calledWithMatch(disabled);
-      });
-    });
-    describe('if the map has NOT been mounted', () => {
-      it('should NOT render any decks', () => {
-        deepRender(props, Folio);
-        expect(deckSpy).to.have.not.been.called;
-      });
-      it('should create a new map', () => {
-        deepRender(props, Folio);
-        // Not sure about this one...
-        expect(props.schema.adapter().create).to.have.been.called;
-        expect(props.schema.adapter().update).to.have.not.been.called;
-      });
-    });
-  });
-  describe('when event bindings are specified for map', () => {
-    it('should attach the event bindings to the map', () => {
-      let eventSpy = sinon.spy();
-      Folio.__RewireAPI__.__Rewire__('attachEventBindings', eventSpy);
-      deepRender(props, Folio);
-      expect(eventSpy).to.have.been.calledWith(props.schema.on);
-      Folio.__RewireAPI__.__ResetDependency__('attachEventBindings');
-    });
-  });
-  describe('when event bindings are not specified for map', () => {
-    it('should not attach the event bindings to the map', () => {
-      let eventSpy = sinon.spy();
-      Folio.__RewireAPI__.__Rewire__('attachEventBindings', eventSpy);
-      deepRender(t.update(props, {schema: {on: {$set: undefined}}}), Folio);
-      expect(eventSpy).to.have.not.been.called;
-      Folio.__RewireAPI__.__ResetDependency__('attachEventBindings');
-    });
-  });
-  xdescribe('when it will receive props', () => {
-    describe('when the options or config have changed and map is present', () => {
-      it('should call adapter.update with proper arguments', () => {
-      });
-    });
-  });
-  it('should render correctly', () => {
+
+  it('should render the HTML correctly', () => {
     const { output } = shallowRender(props, Folio);
     let [div1] = output.props.children;
     expect(div1.ref).to.eql('map');
