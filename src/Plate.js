@@ -52,12 +52,11 @@ export default class Plate extends Component {
   }
   componentWillReceiveProps(np) {
     let {options, config} = np;
-    let adapter = np.adapter({options, config});
-    adapter.update({element: this.element});
-  }
-  shouldComponentUpdate(np) {
-    // OPTIMIZE: can we use a persistent data structure to get rid of deepEqual checks?
-    return !this.props.config || !deepEqual(np.config, this.props.config) || !deepEqual(np.options, this.props.options);
+    // OPTIMIZE: use a persistent data structure.
+    if (!deepEqual(np.config, this.props.config) || !deepEqual(np.options, this.props.options)) {
+      let adapter = np.adapter({options, config});
+      adapter.update({element: this.element});
+    }
   }
   render() {
     return null;

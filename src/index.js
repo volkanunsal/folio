@@ -12,7 +12,6 @@ export default class Folio extends Component {
   componentDidMount() {
     let {options, config, on} = this.props.schema;
     let adapter = this.props.schema.adapter({options, config});
-
     if (process.env.NODE_ENV !== 'production') {
       tcv.assert(
         tcv.validate(adapter, IAdapterReturn).isValid(),
