@@ -5,7 +5,7 @@ import {IPlaten, IAdapterReturn} from './interfaces';
 import attachEventBindings from './utils/attachEventBindings';
 import tcv from 'tcomb-validation';
 import t from 'tcomb';
-
+  
 @props(IPlaten)
 export default class Plate extends Component {
   componentDidMount() {
