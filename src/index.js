@@ -51,7 +51,7 @@ export default class Folio extends Component {
   }
   render() {
     let mapConfig = this.props.schema.config;
-    return <div className='folio'>
+    return <div className='folio/src'>
       <div ref='map' style={mapConfig.style} className={mapConfig.className}/>
       <div>{this.renderPlates()}</div>
     </div>;

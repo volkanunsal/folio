@@ -17,7 +17,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      'folio': path.join(__dirname, '..', '..', 'src')
+      'folio/src': path.join(__dirname, '..', '..', 'src')
     },
     extensions: ['', '.js']
   },

@@ -29,7 +29,7 @@ module.exports = {
     }]
   },
   output: {
-    library: 'folio',
+    library: 'folio/src',
     libraryTarget: 'umd'
   },
   plugins: plugins,

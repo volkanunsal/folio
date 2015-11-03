@@ -1,7 +1,7 @@
 /*globals L*/
 /*eslint no-script-url: 0*/
 import React, { Component } from 'react';
-import Folio from 'folio';
+import Folio from 'folio/src';
 import LMap from 'folio/adapters/L/Map';
 import LTile from 'folio/adapters/L/Tile';
 import LMarker from 'folio/adapters/L/Marker';

@@ -7,7 +7,7 @@ function lbounds(u) {
   return new L.LatLngBounds([[u[1], u[0]], [u[3], u[2]]]);
 }
 
-const TileJSONLayer = {
+export const TileJSONLayer = L.TileLayer.extend({
   options: {
     format: 'png'
   },
@@ -97,9 +97,8 @@ const TileJSONLayer = {
     }
     return this;
   }
-};
-
+});
+  
 export function tileJSON(config={}, options) {
-  let Layer = L.TileLayer.extend(TileJSONLayer);
-  return new Layer(config, options);
+  return new TileJSONLayer(config, options);
 }

@@ -1,6 +1,6 @@
 /*globals L*/
 const {L} = window;
-import {tileJSON} from './plugins/TileJSONLayer';
+import {tileJSON, TileJSONLayer} from './plugins/TileJSONLayer';
 
 export default function({ config: c, options: o }) {
   return {
@@ -20,7 +20,7 @@ export default function({ config: c, options: o }) {
       if (url.match(/\{x\}/)) {
         e.setUrl(url);
       } else {
-        tileJSON.prototype.setUrl.call(e, url);
+        TileJSONLayer.prototype.setUrl.call(e, url);
       }
       return e;
     },
