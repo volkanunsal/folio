@@ -1,7 +1,7 @@
 /*globals L*/
 const {L} = window;
-import getZoomStyle from 'folio/utils/getZoomStyle';
-import getLatLon from 'folio/utils/getLatLon';
+import getZoomStyle from '../../../utils/getZoomStyle';
+import getLatLon from '../../../utils/getLatLon';
 
 let defaultZoomStyles = {
   ['<=11']: { radius: 1, weight: 0 },

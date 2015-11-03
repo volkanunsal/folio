@@ -1,7 +1,7 @@
 /*globals L*/
 const {L} = window;
 import t from 'tcomb';
-import getLatLon from 'folio/utils/getLatLon';
+import getLatLon from '../../../utils/getLatLon';
 
 export default function({ config: c, options: o }) {
   return {
