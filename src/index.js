@@ -5,7 +5,6 @@ import attachEventBindings from './utils/attachEventBindings';
 import {props} from 'tcomb-react';
 import {IFolio, IAdapterReturn} from './interfaces';
 import tcv from 'tcomb-validation';
-let _map = null;
 
 @props(IFolio)
 export default class Folio extends Component {
@@ -18,11 +17,11 @@ export default class Folio extends Component {
         '[folio] Invalid type returned from adapter. Must be an object defining create, update and remove functions.'
       );
     }
-    _map = adapter.create({node: this.refs.map});
-    _map.decks = {};
-    _map.deckStack = {};
+    this.map = adapter.create({node: this.refs.map});
+    this.map.decks = {};
+    this.map.deckStack = {};
     if (on) {
-      attachEventBindings(on, _map, undefined);
+      attachEventBindings(on, this.map, undefined);
     }
     this.forceUpdate();
   }
@@ -30,23 +29,23 @@ export default class Folio extends Component {
     // NOTE: Unable to test this due to a feature of React that causes problems
     // with JSDOM instances.
     // @see: https://github.com/facebook/react/issues/4025#issuecomment-109067628
-    if (_map) {
+    if (this.map) {
       if (!deepEqual(np.schema.options, this.props.schema.options) || !deepEqual(np.schema.config, this.props.schema.config)) {
         let {options, config} = np.schema;
         let adapter = np.schema.adapter({options, config});
-        adapter.update({element: _map});
+        adapter.update({element: this.map});
       }
     }
   }
   renderPlates() {
     let dex = [];
-    if (!_map) { return dex; }
+    if (!this.map) { return dex; }
     let disabled = this.props.decks.filter(o => o.config.enabled === false).map(o => o.config.name );
     this.props.decks
     .filter(o => o.config.enabled !== false) // Filter out disabled decks
     .filter(o => o.config.belongsTo ? disabled.indexOf(o.config.belongsTo.name) === -1 : true) // Filter out decks whose parent decks have been disabled.
     .forEach(({adapter, config, options, on}) => {
-      dex.push(<Plate config={config} options={options} map={_map} adapter={adapter} key={config.name} on={on} />);
+      dex.push(<Plate config={config} options={options} map={this.map} adapter={adapter} key={config.name} on={on} />);
     });
     return dex;
   }
@@ -58,5 +57,3 @@ export default class Folio extends Component {
     </div>;
   }
 }
-
-
