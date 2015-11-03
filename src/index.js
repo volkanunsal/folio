@@ -24,7 +24,7 @@ export default class Folio extends Component {
     if (on) {
       attachEventBindings(on, this.map, undefined);
     }
-    if (config.ready && t.Function.is(config.ready)) { config.ready({map: this.map}) }
+    if (config.ready && t.Function.is(config.ready)) { config.ready({map: this.map}); }
     this.forceUpdate();
   }
   componentWillReceiveProps(np) {
@@ -53,7 +53,7 @@ export default class Folio extends Component {
   }
   render() {
     let mapConfig = this.props.schema.config;
-    return <div className='folio/src'>
+    return <div className='folio/lib'>
       <div ref='map' style={mapConfig.style} className={mapConfig.className}/>
       <div>{this.renderPlates()}</div>
     </div>;

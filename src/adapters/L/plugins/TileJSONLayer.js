@@ -98,7 +98,7 @@ export const TileJSONLayer = L.TileLayer.extend({
     return this;
   }
 });
-  
+
 export function tileJSON(config={}, options) {
   return new TileJSONLayer(config, options);
 }
