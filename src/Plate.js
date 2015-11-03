@@ -4,6 +4,7 @@ import {props} from 'tcomb-react';
 import {IPlaten, IAdapterReturn} from './interfaces';
 import attachEventBindings from './utils/attachEventBindings';
 import tcv from 'tcomb-validation';
+import t from 'tcomb';
 
 @props(IPlaten)
 export default class Plate extends Component {
@@ -27,6 +28,7 @@ export default class Plate extends Component {
       }
       // TODO: If this deck has other decks that refer to it as owner, make sure
       // those decks are added after this has been added.
+      if (config.ready && t.Function.is(config.ready)) { config.ready({element: this.element, map: this.props.map}) }
     }
   }
   getOwner() {

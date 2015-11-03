@@ -5,6 +5,7 @@ import attachEventBindings from './utils/attachEventBindings';
 import {props} from 'tcomb-react';
 import {IFolio, IAdapterReturn} from './interfaces';
 import tcv from 'tcomb-validation';
+import t from 'tcomb';
 
 @props(IFolio)
 export default class Folio extends Component {
@@ -23,6 +24,7 @@ export default class Folio extends Component {
     if (on) {
       attachEventBindings(on, this.map, undefined);
     }
+    if (config.ready && t.Function.is(config.ready)) { config.ready({map: this.map}) }
     this.forceUpdate();
   }
   componentWillReceiveProps(np) {
