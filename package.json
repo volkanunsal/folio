@@ -1,8 +1,8 @@
 {
   "name": "folio-leaflet",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Simple React bindings for Leaflet",
-  "main": "lib/index.js",
+  "main": "./lib",
   "scripts": {
     "clean": "rimraf lib dist",
     "build:lib": "babel src --out-dir lib",
