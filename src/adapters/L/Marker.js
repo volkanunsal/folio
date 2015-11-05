@@ -1,5 +1,6 @@
 /*globals L*/
 const {L} = window;
+import t from 'tcomb';
 
 export default function({ config: c, options: o }) {
   return {
@@ -12,7 +13,7 @@ export default function({ config: c, options: o }) {
     update: ({element: e}) => {
       let {coordinates} = c;
       e.setLatLng(coordinates);
-      if (o.opacity) {
+      if (t.Number.is(o.opacity)) {
         e.setOpacity(o.opacity);
       }
       if (o.icon) {
