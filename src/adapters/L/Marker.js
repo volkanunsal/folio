@@ -12,6 +12,12 @@ export default function({ config: c, options: o }) {
     update: ({element: e}) => {
       let {coordinates} = c;
       e.setLatLng(coordinates);
+      if (o.opacity) {
+        e.setOpacity(o.opacity);
+      }
+      if (o.icon) {
+        e.setIcon(o.icon);
+      }
       return e;
     },
     remove: ({element: e, owner: ow}) => {
