@@ -21,6 +21,6 @@ describe('objectsAreEqual', () => {
     expect(objectsAreEqual({a: 1}, {a: 1, b: () => {}})).to.eql(true);
   });
   it('should ignore functions 2', () => {
-    expect(objectsAreEqual({a: 1, b: () => {}}, {a: 1})).to.eql(true)
+    expect(objectsAreEqual({a: 1, b: () => {}}, {a: 1})).to.eql(true);
   });
 });

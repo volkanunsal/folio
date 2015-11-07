@@ -12,4 +12,4 @@ export default function removeKeysWithFunctionValues(options) {
     }
   });
   return nextOptions;
-};
+}

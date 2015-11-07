@@ -1,6 +1,5 @@
 import {expect} from 'chai';
 import getFirstDupInArray from '../getFirstDupInArray';
-import {noop} from '../test-utils';
 
 describe('getFirstDupInArray', () => {
   it('should return first dup in array 1', () => {

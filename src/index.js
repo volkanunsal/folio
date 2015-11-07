@@ -50,13 +50,13 @@ export default class Folio extends Component {
 
     if (process.env.NODE_ENV !== 'production') {
       let enabledDeckNames = enabledDecks.map(o => o.config.name);
+      let dupName = getFirstDupInArray(enabledDeckNames);
       enabledDeckNames.forEach( name => {
         tcv.assert(
           t.String.is(name),
           `[folio] InvalidNameError. Decks names must be string. Name: ${dupName}`
         );
       });
-      let dupName = getFirstDupInArray(enabledDeckNames);
       tcv.assert(
         dupName === false,
         `[folio] DupNameError. Decks must have unique names. Repeated: ${dupName}.`

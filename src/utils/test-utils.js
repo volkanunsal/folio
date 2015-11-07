@@ -1,7 +1,7 @@
 import TestUtils from 'react-addons-test-utils';
 import React from 'react';
 
-export function noop() {};
+export function noop() {}
 
 export function shallowRender( _props, comp) {
   let renderer = TestUtils.createRenderer();
