@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Plate from './Plate';
 import deepEqual from 'deep-equal';
 import attachEventBindings from './utils/attachEventBindings';
+import getFirstDupInArray from './utils/getFirstDupInArray';
 import {props} from 'tcomb-react';
 import {IFolio, IAdapterReturn} from './interfaces';
 import tcv from 'tcomb-validation';
@@ -43,9 +44,26 @@ export default class Folio extends Component {
     let dex = [];
     if (!this.map) { return dex; }
     let disabled = this.props.decks.filter(o => o.config.enabled === false).map(o => o.config.name );
-    this.props.decks
-    .filter(o => o.config.enabled !== false) // Filter out disabled decks
-    .filter(o => o.config.belongsTo ? disabled.indexOf(o.config.belongsTo.name) === -1 : true) // Filter out decks whose parent decks have been disabled.
+    let enabledDecks = this.props.decks
+      .filter(o => o.config.enabled !== false) // Filter out disabled decks
+      .filter(o => o.config.belongsTo ? disabled.indexOf(o.config.belongsTo.name) === -1 : true); // Filter out decks associated to disabled decks.
+
+    if (process.env.NODE_ENV !== 'production') {
+      let enabledDeckNames = enabledDecks.map(o => o.config.name);
+      enabledDeckNames.forEach( name => {
+        tcv.assert(
+          t.String.is(name),
+          `[folio] InvalidNameError. Decks names must be string. Name: ${dupName}`
+        );
+      });
+      let dupName = getFirstDupInArray(enabledDeckNames);
+      tcv.assert(
+        dupName === false,
+        `[folio] DupNameError. Decks must have unique names. Repeated: ${dupName}.`
+      );
+    }
+
+    enabledDecks
     .forEach(({adapter, config, options, on}) => {
       dex.push(<Plate config={config} options={options} map={this.map} adapter={adapter} key={config.name} on={on} />);
     });

@@ -13,11 +13,13 @@ export default function({ config: c, options: o }) {
     update: ({element: e}) => {
       let {coordinates} = c;
       e.setLatLng(coordinates);
-      if (t.Number.is(o.opacity)) {
-        e.setOpacity(o.opacity);
-      }
-      if (o.icon) {
-        e.setIcon(o.icon);
+      if (o) {
+        if (t.Number.is(o.opacity)) {
+          e.setOpacity(o.opacity);
+        }
+        if (o.icon) {
+          e.setIcon(o.icon);
+        }
       }
       return e;
     },

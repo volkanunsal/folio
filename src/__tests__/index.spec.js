@@ -1,8 +1,8 @@
 /*eslint no-unused-expressions: 0*/
 import {expect} from 'chai';
 import sinon from 'sinon';
-import Folio from '../src';
-import {shallowRender} from './test-utils';
+import Folio from '../';
+import {shallowRender} from '../utils/test-utils';
 let makeAdapter = () => (/*{options, config}*/) => ({
   create: sinon.spy(),
   update: sinon.spy(),
@@ -16,7 +16,9 @@ let props = {
       style: {width: 800},
       className: 'yo'
     },
-    on: sinon.spy()
+    on: {
+      click: () => {}
+    }
   },
   decks: [
     {
@@ -55,22 +57,6 @@ let props = {
 };
 
 describe('Folio', () => {
-  xdescribe('if _map exists', () => {
-    it('should render the enabled decks', () => {
-      const {output} = shallowRender(props, Folio);
-      expect(output.props.children[1].props.children.map(o => o.props.config.name)).to.contain('Plate1');
-    });
-    it('should not render disabled decks', () => {
-      const {output} = shallowRender(props, Folio);
-      expect(output.props.children[1].props.children.map(o => o.props.config.name)).to.not.contain('Plate2');
-    });
-
-    it('should not render decks that belong to disabled decks', () => {
-      const {output} = shallowRender(props, Folio);
-      expect(output.props.children[1].props.children.map(o => o.props.config.name)).to.not.contain('Plate3');
-    });
-  });
-
   it('should render the HTML correctly', () => {
     const { output } = shallowRender(props, Folio);
     let [div1] = output.props.children;

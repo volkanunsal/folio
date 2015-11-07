@@ -1,8 +1,8 @@
 import { Component } from 'react';
-import deepEqual from 'deep-equal';
 import {props} from 'tcomb-react';
 import {IPlaten, IAdapterReturn} from './interfaces';
 import attachEventBindings from './utils/attachEventBindings';
+import objectsAreEqual from './utils/objectsAreEqual';
 import tcv from 'tcomb-validation';
 import t from 'tcomb';
 
@@ -55,7 +55,7 @@ export default class Plate extends Component {
   componentWillReceiveProps(np) {
     let {options, config} = np;
     // OPTIMIZE: use a persistent data structure.
-    if (!deepEqual(np.config, this.props.config) || !deepEqual(np.options, this.props.options)) {
+    if (!objectsAreEqual(np.config, this.props.config) || !objectsAreEqual(np.options, this.props.options)) {
       let adapter = np.adapter({options, config});
       adapter.update({element: this.element});
     }

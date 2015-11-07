@@ -1,14 +1,12 @@
 {
   "name": "folio-leaflet",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Simple React bindings for Leaflet",
   "main": "./lib",
   "scripts": {
     "clean": "rimraf lib dist",
     "build:lib": "babel src --out-dir lib",
-    "build:umd": "webpack src/index.js dist/folio.js",
-    "build:umd:min": "NODE_ENV=production webpack src/index.js dist/folio.min.js",
-    "build": "npm run build:lib && npm run build:umd && npm run build:umd:min",
+    "build": "npm run build:lib",
     "lint": "NODE_ENV=development eslint src test examples",
     "test": "NODE_ENV=test mocha",
     "test:watch": "NODE_ENV=test mocha --watch",
