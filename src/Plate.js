@@ -54,7 +54,6 @@ export default class Plate extends Component {
   }
   componentWillReceiveProps(np) {
     let {options, config} = np;
-    // OPTIMIZE: use a persistent data structure.
     if (!objectsAreEqual(np.config, this.props.config) || !objectsAreEqual(np.options, this.props.options)) {
       let adapter = np.adapter({options, config});
       adapter.update({element: this.element});

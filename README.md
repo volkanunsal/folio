@@ -4,9 +4,18 @@
 
 *noun*. a book or pamphlet made up of one or more full sheets of paper.
 
+folio is a React component with a declarative API to help manage Leaflet maps using native Javascript data structures.
 
-Super simple, declarative React bindings for Leaflet maps.
 
+## Motivation
+
+Provide a declarative interface to Leaflet API.
+
+## Features
+
+* Updates the map when the configuration or options change.
+* Can create associations between map elements.
+* Lets you use React components in Leaflet Controls.
 
 ## Get started
 
@@ -15,8 +24,6 @@ Super simple, declarative React bindings for Leaflet maps.
 ```
 
 ## How it works
-
-folio is a React component that manages Leaflet maps using native Javascript data structures.
 
 ```jsx
 export default class App extends Component {
@@ -53,17 +60,10 @@ export default class App extends Component {
 }
 ```
 
-## Motivation
-
-* Provide a declarative interface to Leaflet
-* Create associations between map elements.
-* Simplify configuration with Javascript objects.
-
-
 ## Terminology
 
 
-## Deck
+### Deck
 
 In folio, a deck is the term for a configuration object for a Leaflet map element, e.g. layer, control, overlay, marker, etc.
 
@@ -84,7 +84,7 @@ Deck is a simple Javascript object and it looks like this:
 
 You will use decks to configure any of these elements, with the notable exception of the 'map' itself. For that, you need to use schema.
 
-## Schema
+### Schema
 
 Schema has exactly the same interface as deck, but it's used exclusively for configuring the map.
 
@@ -104,7 +104,7 @@ Schema has exactly the same interface as deck, but it's used exclusively for con
 }
 ```
 
-## Adapter
+### Adapter
 
 Each deck includes an adapter, which provides the bridge to Leaflet. An adapter is a function that takes an object as a function and returns three methods: create, update, and remove.
 
@@ -118,9 +118,4 @@ export default function({ config: c, options: o }) {
 }
 ```
 
-Other interfaces in the domain [can be found here.](https://github.com/volkanunsal/folio/blob/master/src%2Finterfaces.js)
-
-## TODO
-
-- [ ] Associations
-- [ ] Write tests
+Other interfaces on the domain [can be found here.](https://github.com/volkanunsal/folio/blob/master/src%2Finterfaces.js)
