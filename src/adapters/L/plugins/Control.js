@@ -12,8 +12,8 @@ let Control = {
   onAdd() {
     // create the control container with a particular class name
     const container = L.DomUtil.create('div', this.options.className);
-    // Disable click propagation from the container of this.
     L.DomEvent.disableClickPropagation(container);
+    L.DomEvent.disableScrollPropagation(container);
     return container;
   }
 };
