@@ -72,17 +72,19 @@ Deck is a simple Javascript object and it looks like this:
 ```javascript
 {
   adapter: LTile,
+  // Used for the internal configuration of the Deck
   config: {
     name: 'Basemap',
     url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
   },
+  // Leaflet options
   options: {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }
 }
 ```
 
-You will use decks to configure any of these elements, with the notable exception of the 'map' itself. For that, you need to use schema.
+You should use decks to configure any of these elements, with the notable exception of the 'map' itself. For that, you need to use schema.
 
 ### Schema
 
