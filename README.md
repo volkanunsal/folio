@@ -118,4 +118,6 @@ export default function({ config: c, options: o }) {
 }
 ```
 
+Check out the [adapters folder](https://github.com/volkanunsal/folio/tree/master/src/adapters/L) for a full list of available adapters.
+
 Other interfaces on the domain [can be found here.](https://github.com/volkanunsal/folio/blob/master/src%2Finterfaces.js)
