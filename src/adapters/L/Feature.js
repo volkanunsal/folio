@@ -10,9 +10,10 @@ export default function({ config: c, options: o }) {
       return e;
     },
     update: ({element: e}) => {
-      let {data} = c;
-      if (data) {
-        e.setGeoJSON(data.geojson);
+      let {geojson} = c;
+
+      if (geojson) {
+        e.setGeoJSON(geojson);
         e.bringToBack();
       }
     },
