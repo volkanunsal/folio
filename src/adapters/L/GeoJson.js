@@ -1,11 +1,9 @@
 /*globals L*/
-import { featureLayer } from './plugins/FeatureLayer';
-
 export default function({ config: c, options: o }) {
   return {
     create: ({owner: ow}) => {
       let {geojson} = c;
-      let e = featureLayer(geojson, o);
+      let e = L.geoJson(geojson, o);
       ow.addLayer(e);
       return e;
     },
@@ -13,7 +11,7 @@ export default function({ config: c, options: o }) {
       let {geojson} = c;
 
       if (geojson) {
-        e.setGeoJSON(geojson);
+        e.addData(geojson);
         e.bringToBack();
       }
     },
@@ -22,4 +20,3 @@ export default function({ config: c, options: o }) {
     }
   };
 }
-
