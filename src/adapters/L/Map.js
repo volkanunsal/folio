@@ -8,14 +8,14 @@ let defaults = {
   zoomControl: false
 };
 
-export default function({ config: c, options: o }) {
+export default function({ options: o }) {
   return {
     create: ({node: n}) => {
       return L.map(ReactDOM.findDOMNode(n), {...defaults, ...o});
     },
     update: ({element: e}) => {
-      if (c.center && c.zoom) {
-        e.setView(c.center, c.zoom, o.zoomPanOptions || {});
+      if (o.center && o.zoom) {
+        e.setView(o.center, o.zoom, o.zoomPanOptions || {});
       }
       return e;
     },
