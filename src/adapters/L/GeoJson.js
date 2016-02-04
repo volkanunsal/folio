@@ -5,6 +5,9 @@ export default function({ config: c, options: o }) {
       let {geojson} = c;
       let e = L.geoJson(geojson, o);
       ow.addLayer(e);
+      if (o.clickable) {
+        e.on('click', (z) => ow.fire('click', z));
+      }
       return e;
     },
     update: ({element: e}) => {

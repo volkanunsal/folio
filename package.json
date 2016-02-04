@@ -1,6 +1,6 @@
 {
   "name": "folio-leaflet",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Simple React bindings for Leaflet",
   "main": "./lib",
   "scripts": {

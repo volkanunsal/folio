@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+0.2.2
+  * clickable property on GeoJSON allows clicks to pass through the feature layer and to also originate from the map.
+
 0.2.0
   * Deprecate Feature adapter
 
