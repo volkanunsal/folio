@@ -49,11 +49,12 @@ export const TileJSONLayer = L.TileLayer.extend({
   _setTileJSON(json) {
     t.Obj(json);
     let {tiles, minzoom, minZoom, maxzoom, maxZoom, attribution, bounds, scheme} = json;
+
     L.extend(this.options, {
       tiles,
       attribution,
-      minZoom: minzoom || minZoom || 0,
-      maxZoom: maxzoom || maxZoom || 18,
+      minZoom: this.options.minZoom || minzoom || minZoom || 0,
+      maxZoom: this.options.maxZoom || maxzoom || maxZoom || 18,
       tms: scheme === 'tms',
       bounds: (bounds && lbounds(bounds))
     });
