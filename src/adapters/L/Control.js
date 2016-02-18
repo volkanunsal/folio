@@ -10,10 +10,10 @@ export default function({ config: c, options: o }) {
       ow.addControl(e);
       return e;
     },
-    update: ({element: e}) => {
+    update: ({element: e, store}) => {
       t.match(c.content,
         t.Function, () => {
-          ReactDOM.render(c.content(), e.getContainer());
+          ReactDOM.render(c.content(store), e.getContainer());
         },
         t.Any, () => {
           e.getContainer().innerHTML = c.content;

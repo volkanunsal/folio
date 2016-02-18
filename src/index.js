@@ -28,6 +28,7 @@ export default class Folio extends Component {
     if (config.ready && t.Function.is(config.ready)) { config.ready({map: this.map}); }
     this.forceUpdate();
   }
+
   componentWillReceiveProps(np) {
     // NOTE: Unable to test this due to a feature of React that causes problems
     // with JSDOM instances.
@@ -40,6 +41,7 @@ export default class Folio extends Component {
       }
     }
   }
+
   renderPlates() {
     let dex = [];
     if (!this.map) { return dex; }

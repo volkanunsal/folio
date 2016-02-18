@@ -8,6 +8,9 @@ import t from 'tcomb';
 
 @props(IPlaten)
 export default class Plate extends Component {
+  static contextTypes = {
+    store: React.PropTypes.any
+  }
   componentDidMount() {
     let {options, config, on} = this.props;
     let adapter = this.props.adapter({options, config});
@@ -22,7 +25,7 @@ export default class Plate extends Component {
     if (owner) {
       this.element = adapter.create({owner});
       this.props.map.decks[config.name] = this.element;
-      adapter.update({element: this.element});
+      adapter.update({store: this.context.store, element: this.element});
       if (on) {
         attachEventBindings(on, this.element, this.props.map);
       }
@@ -56,7 +59,7 @@ export default class Plate extends Component {
     let {options, config} = np;
     if (!objectsAreEqual(np.config, this.props.config) || !objectsAreEqual(np.options, this.props.options)) {
       let adapter = np.adapter({options, config});
-      adapter.update({element: this.element});
+      adapter.update({store: this.context.store, element: this.element});
     }
   }
   render() {
