@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, PropTypes } from 'react';
 import {props} from 'tcomb-react';
 import {IPlaten, IAdapterReturn} from './interfaces';
 import attachEventBindings from './utils/attachEventBindings';
@@ -9,7 +9,7 @@ import t from 'tcomb';
 @props(IPlaten)
 export default class Plate extends Component {
   static contextTypes = {
-    store: React.PropTypes.any
+    store: PropTypes.any
   }
   componentDidMount() {
     let {options, config, on} = this.props;
