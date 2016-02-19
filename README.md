@@ -4,7 +4,7 @@
 
 _Map configuration is the map state_
 
-folio is a Leaflet wrapper library for React with declarative API. The basic idea behind folio is to address the problem that the Leaflet library gives you dozens of ways of updating the state of your map, but the configuration of the map doesn't reflect the state of the map until you run some update function. If you work with React components, this is a chore, and this library aims to make it easy to use Leaflet maps in React components and let you manage the map state the same way you would manage the component state. 
+folio is a Leaflet wrapper library for React with declarative API. The basic idea behind folio is to address the problem that the Leaflet library gives you dozens of ways of updating the state of your map, with slightly different APIs, and the state of the map can change but the configuration of the map can stay the same. If you work with React components, you know how great it is to have your views reflect your state. You can take a snapshot of your app by saving its state, but it's not possible to do that yet with maps. This library aims to to make it easy to use Leaflet maps in React components and let you manage the map state the same way you would manage the component state.
 
 
 ## Get started
