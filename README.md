@@ -2,14 +2,11 @@
 
 **/ˈfōlēˌō/**
 
-*noun*. a book or pamphlet made up of one or more full sheets of paper.
+_Map configuration is the map state_
 
-folio is a React component with a declarative API to help manage Leaflet maps using native Javascript data structures.
+folio is a React component with a declarative API to help manage Leaflet maps. The basic idea behind folio is to address the problem that the Leaflet library gives you dozens of ways of updating the state of your map, but the configuration of the map doesn't reflect the state of the map until you run some function that does that for you. If you're working in React components, this is a chore, and this library aims to make it easy to use Leaflet maps in React components and let you manage the map state the same way you would manage the component state. 
 
 
-## Motivation
-
-Provide a declarative interface to Leaflet API.
 
 ## Features
 
