@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/volkanunsal/folio",
   "dependencies": {
+    "deep-equal": "1.0.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "tcomb": "2.5.1",
