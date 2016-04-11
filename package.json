@@ -1,6 +1,6 @@
 {
   "name": "folio-leaflet",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Simple React bindings for Leaflet",
   "main": "./lib",
   "scripts": {
@@ -43,7 +43,7 @@
     "babel-loader": "^5.1.4",
     "babel-plugin-rewire": "0.1.23-beta-3",
     "chai": "*",
-    "deep-equal": "1.0.0",
+    "deep-equal": "^1.0.0",
     "eslint": "^0.23",
     "eslint-config-airbnb": "0.0.6",
     "eslint-plugin-react": "^2.3.0",
