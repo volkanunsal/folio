@@ -29,6 +29,8 @@ next_ref="v$next_version"
 
 npm test
 
+npm run lint
+
 update_version 'package.json' $next_version
 
 git commit -am "Version $next_version"

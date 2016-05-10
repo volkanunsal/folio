@@ -23,12 +23,12 @@ export default function({ config: c, options: o }) {
       let {zoomStyles} = o;
       ow.addLayer(e);
       // Listen to zoom level changes on the map. Update the styles of the marker if zoom level has a style.
-      const updateStyle = () => {
+      function updateStyle() {
         let curLevelStyles = getZoomStyle(ow.getZoom(), zoomStyles || defaultZoomStyles);
         e.setStyle(curLevelStyles);
       }
       ow.on('zoomend', updateStyle);
-      updateStyle()
+      updateStyle();
       return e;
     },
     update: ({element: e}) => {
