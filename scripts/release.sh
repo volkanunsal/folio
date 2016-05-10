@@ -45,3 +45,7 @@ git push origin $next_ref
 git push origin latest -f
 
 npm publish
+
+git commit -am "Compile library"
+
+git push origin master
